@@ -1,6 +1,7 @@
-import sys
-print(sys.path)
-from transaction import *
+import sys, os
+dir_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(dir_path)
+from core.transaction import *
 def main():
 
     print(sys.path)
