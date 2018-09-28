@@ -7,7 +7,7 @@ def read_meassage(admin):
         dir_path += "\\admin"
         with open(dir_path, 'r',encoding='utf-8') as f:
             for i in f:
-
+                pass
     else:
         return False
 

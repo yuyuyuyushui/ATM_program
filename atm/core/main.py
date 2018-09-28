@@ -1,5 +1,6 @@
 import sys
-from core.transaction import *
+print(sys.path)
+from transaction import *
 def main():
 
     print(sys.path)
