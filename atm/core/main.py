@@ -1,27 +1,34 @@
-import sys, os
-dir_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(dir_path)
-from core.transaction import *
-def main():
 
-    print(sys.path)
+from core.transaction import *
+from conf import settings
+from core import accounts
+def main_():
     df = {
         1: "转账",
         2: "还款",
         3: "取款",
-        4: "查询"
+        4: "查询",
+        5: "账单"
     }
     dict_opreation = {
         1: transfer_accounts,
         2: repayment,
         3: withdraw_money,
-        4: query_money
+        4: query_money,
+        5: pay_check
     }
-    while True:
-        for i in df:
-            print(i, df[i])
-        chioce_op = input('请输入你选择的操作》》').strip()
-        if int(chioce_op) in dict_opreation:
-            dict_opreation[int(chioce_op)]()
+    while not settings.LOGGING_STATE['admin']:
+        admin = input("请输入用户名》》")
+        passed = input('请输入密码》》')
+        date = accounts.read_meassage(admin)
+        if date['password'] == passed:
+            settings.LOGGING_STATE["admin"] = True
+            for i in df:
+                print(i, df[i])
+            chioce_op = input('请输入你选择的操作》》').strip()
+            if int(chioce_op) in dict_opreation:
+                dict_opreation[int(chioce_op)]()
+        else:
+            print("请输入正确的账号")
 if __name__=="__main__":
-    main()
+    main_()

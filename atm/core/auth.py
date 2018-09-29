@@ -1,7 +1,7 @@
 #用户验证
-import  os,sys
-dir_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(dir_path)
+# import  os,sys
+# dir_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# sys.path.append(dir_path)
 from conf.settings import *
 from core import accounts
 
