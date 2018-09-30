@@ -1,7 +1,7 @@
 
 from core.transaction import *
 from conf import settings
-from core import accounts
+from .accounts import read_meassage
 def main_():
     df = {
         1: "转账",
@@ -20,7 +20,7 @@ def main_():
     while not settings.LOGGING_STATE['admin']:
         admin = input("请输入用户名》》")
         passed = input('请输入密码》》')
-        date = accounts.read_meassage(admin)
+        date = read_meassage(admin)
         if date['password'] == passed:
             settings.LOGGING_STATE["admin"] = True
             for i in df:
