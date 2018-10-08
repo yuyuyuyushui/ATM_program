@@ -8,7 +8,8 @@ from core import accounts
 def login(func):
     def longging(*args,**kwargs):
         if LOGGING_STATE['admin']:
-            func(*args, **kwargs)
+            date = func(*args, **kwargs)
+            return date
         else:
             admin = input("请输入用户名")
             passwd = input("请输入登录密码")
