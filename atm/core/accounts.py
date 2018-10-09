@@ -16,9 +16,9 @@ def read_meassage(admin):
         return False
 
 def write_meassage(accounts_date):
-    dir_path = r'%s\db\accounts\%snew'%(settings.DIR_PATH, accounts_date['id'])
-    with open(dir_path,'w',encoding='utf-8') as f:
-        f.write(json.dumps(accounts_date))
+    dir_path = r'%s\db\accounts\%snew.json'%(settings.DIR_PATH, accounts_date['id'])
+    with open(dir_path, 'w', encoding='utf-8') as f:
+        json.dump(accounts_date,f)
 # if __name__ == "__main__":
 #     read_meassage('1234')
 

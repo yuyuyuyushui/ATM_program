@@ -33,19 +33,22 @@ def withdraw_money():
     pass
 def query_money():
     pass
-def pay_check():
-    pass
+@auth.login
+def pay_check(*args, **kwargs):
+    print(args[0])
+    pay_money = float(args[0])
+    date = transcation(pay_money, 'consume', kwargs)
+    print(date)
 
-
-def transcation(input_money, trans_type, accounts_date,**kwargs):
+def transcation(input_money, trans_type, accounts_date, **kwargs):
     input_money = float(input_money)
     if trans_type in settings.TRANCE_TYPE:
-        amount = int(input_money) * settings.TRANCE_TYPE[trans_type]['interest']
+        amount = input_money * settings.TRANCE_TYPE[trans_type]['interest']
         amount += input_money
         if settings.TRANCE_TYPE[trans_type]['action'] == 'plus':
             new_balance = accounts_date['balance'] + amount
         elif settings.TRANCE_TYPE[trans_type]['action'] == 'minus':
-            if input_money<=accounts_date['balance']:
+            if input_money <= accounts_date['balance']:
                 new_balance = accounts_date['balance'] - amount
                 if kwargs:
                     kwargs['balance'] = float(kwargs['balance'])+input_money
@@ -55,10 +58,13 @@ def transcation(input_money, trans_type, accounts_date,**kwargs):
                     pass
             else:
                 print('你输入的价格超过了余额')
+                exit()
         accounts_date['balance'] = new_balance
         accounts.write_meassage(accounts_date)
         return accounts_date
     else:
         print('')
+if __name__ == "__main__":
+    pay_check('23')
 
 
