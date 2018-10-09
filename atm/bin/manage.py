@@ -7,4 +7,5 @@ def manage():
         admin = input('请输入管理员账号》》')
         password = input("请输入管理员密码》》")
         if admin =='admin'and password == '1234':
+            pass
 
